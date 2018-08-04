@@ -1,0 +1,39 @@
+{
+    "orderers":{
+        "name" :"Orderer","mspID":"OrdererMSP","domain":"orderer.net","ordererHostname":"orderer","SANS":"localhost","type":"solo"
+    },
+    "addCA":"false",
+    "fabricVersion":"1.0.4",
+    "orgs":[
+        {
+            "name" :"CentralGovt",
+            "domain":"CentralGovt.net",
+            "mspID":"CentralGovtMSP",
+            "SANS":"localhost",
+            "peerCount":1,
+            "userCount":1
+        },
+        {
+            "name" :"StateGovt",
+            "domain":"StateGovt.net",
+            "mspID":"StateGovtMSP",
+            "SANS":"localhost",
+            "peerCount":1,
+            "userCount":1
+        },
+        {
+            "name" :"NGO",
+            "domain":"NGO.net",
+            "mspID":"NGOMSP",
+            "SANS":"localhost",
+            "peerCount":1,
+            "userCount":1
+        }
+        ],
+    "consortium":"SupplyChainConsortium",
+    "channels" :[
+                    {"channelName":"flood","orgs":["CentralGovt","StateGovt","NGO"] }
+                ],
+    "chaincodes":[{"channelName":"flood","ccid":"flood","version":"1.0","src":"github.com/flood","participants":["CentralGovt","StateGovt","NGO"]}]
+
+}

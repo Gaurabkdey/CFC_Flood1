@@ -1,0 +1,75 @@
+
+Profiles:
+
+    OrdererGenesis:
+        Orderer:
+            <<: *OrdererDefaults
+            Organizations:
+                - *OrdererOrg
+        Consortiums:
+          SupplyChainConsortium:
+             Organizations:
+                - *CentralGovtOrg
+                - *StateGovtOrg
+                - *NGOOrg
+                
+    
+    
+    floodChannel:
+        Consortium: SupplyChainConsortium
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *CentralGovtOrg
+                - *StateGovtOrg
+                - *NGOOrg
+                
+     
+Organizations:
+    - &OrdererOrg
+        Name: OrdererMSP
+        ID: OrdererMSP
+        MSPDir: crypto-config/ordererOrganizations/orderer.net/msp
+    
+    - &CentralGovtOrg
+        Name: CentralGovtMSP
+        ID: CentralGovtMSP
+        MSPDir: crypto-config/peerOrganizations/CentralGovt.net/msp
+        AnchorPeers:
+          - Host: peer0.CentralGovt.net
+            Port: 7051
+        
+    - &StateGovtOrg
+        Name: StateGovtMSP
+        ID: StateGovtMSP
+        MSPDir: crypto-config/peerOrganizations/StateGovt.net/msp
+        AnchorPeers:
+          - Host: peer0.StateGovt.net
+            Port: 7051
+        
+    - &NGOOrg
+        Name: NGOMSP
+        ID: NGOMSP
+        MSPDir: crypto-config/peerOrganizations/NGO.net/msp
+        AnchorPeers:
+          - Host: peer0.NGO.net
+            Port: 7051
+        
+
+Orderer: &OrdererDefaults
+        OrdererType: solo
+        Addresses:
+          - orderer.orderer.net:7050
+        BatchTimeout: 2s
+        BatchSize:
+          MaxMessageCount: 10
+          AbsoluteMaxBytes: 98 MB
+          PreferredMaxBytes: 512 KB
+        Kafka:
+          Brokers:
+            - 127.0.0.1:9092
+        Organizations:
+
+    
+Application: &ApplicationDefaults
+    Organizations:

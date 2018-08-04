@@ -1,0 +1,32 @@
+OrdererOrgs:
+- Domain: orderer.net
+  Name: Orderer
+  Specs:
+  - SANS:
+    - localhost
+  - Hostname: orderer
+PeerOrgs:
+- Domain: CentralGovt.net
+  Name: CentralGovt
+  Template:
+    Count: 1
+    SANS:
+    - localhost
+  Users:
+    Count: 1
+- Domain: StateGovt.net
+  Name: StateGovt
+  Template:
+    Count: 1
+    SANS:
+    - localhost
+  Users:
+    Count: 1
+- Domain: NGO.net
+  Name: NGO
+  Template:
+    Count: 1
+    SANS:
+    - localhost
+  Users:
+    Count: 1
